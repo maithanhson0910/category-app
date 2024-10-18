@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-service
+  namespace: sonmt
+spec:
+  type: NodePort  # This exposes the service on a port of each node
+  ports:
+    - port: 3000         # Port that the service listens on
+      targetPort: 3000   # Port that the container listens on
+      nodePort: 30000    # NodePort (optional, Kubernetes will assign if not specified)
+  selector:
+    app: node-app  # This should match the label in your deployment
